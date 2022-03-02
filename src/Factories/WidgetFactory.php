@@ -31,11 +31,7 @@ class WidgetFactory
     public function make(string $widget, array $params = [], bool $async = false)
     {
         $widget = trim($widget, " \t\n\r\0\x0B\"'");
-
-        if (! is_callable([$widget, 'make'])) {
-            throw WidgetException::invalidMethod($widget);
-        }
-
+        
         if (! is_subclass_of($widget, AbstractWidget::class)) {
             throw WidgetException::invalidClass($widget);
         }
